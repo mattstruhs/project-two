@@ -22,14 +22,20 @@ router.post("/signup", shouldNotBeLoggedIn, (req, res) => {
   const { username, password } = req.body;
 
   if (!username) {
+    console.log(userNameError);
     return res
       .status(400)
-      .render("auth/signup", { errorMessage: "Please provide your username." });
+      .render("auth/signup", {
+        errorMessage: "Please provide your username.",
+        userNameError: true,
+      });
   }
 
   if (password.length < 8) {
+    console.log(passWordError);
     return res.status(400).render("auth/signup", {
       errorMessage: "Your password needs to be at least 8 characters long.",
+      passWordError: true,
     });
   }
 
