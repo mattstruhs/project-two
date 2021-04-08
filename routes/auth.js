@@ -20,15 +20,14 @@ router.get("/signup", shouldNotBeLoggedIn, (req, res) => {
 
 router.post("/signup", shouldNotBeLoggedIn, (req, res) => {
   const { username, password } = req.body;
-
+  console.log('post route working')
   if (!username) {
     console.log(userNameError);
     return res
       .status(400)
-      .render("auth/signup", {
-        errorMessage: "Please provide your username.",
-        userNameError: true,
-      });
+      .render("auth/signup", { errorMessage: "Please provide your username." });
+        
+
   }
 
   if (password.length < 8) {
