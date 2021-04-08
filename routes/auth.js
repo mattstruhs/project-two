@@ -26,8 +26,6 @@ router.post("/signup", shouldNotBeLoggedIn, (req, res) => {
     return res
       .status(400)
       .render("auth/signup", { errorMessage: "Please provide your username." });
-        
-
   }
 
   if (password.length < 8) {
