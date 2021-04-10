@@ -43,8 +43,8 @@ const authRoutes = require("./routes/auth");
 // prepend any routh found in aithRoutes with /auth
 app.use("/auth", authRoutes);
 
-// const wineRoutes = require("./routes/gws.route")
-// app.use("/wines", wineRoutes);
+const wineRoutes = require("./routes/gws.route")
+app.use("/", wineRoutes);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
