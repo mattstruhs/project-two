@@ -11,26 +11,21 @@ const axios = require("axios");
 
 router.get("/wines", (req, res, next) => {
   console.log("great job on the post route!");
-  let limitResults = req.query.numResults;
-  let vintage = req.query.vintage;
+  let limitResults = req.query.limitResults;
+  // let vintage = req.query.vintage;
   let color = req.query.color;
-  let region = req.query.region[0];
+  // let region = req.query.region[0];
   let country = req.query.country;
-  let score = req.query.score;
-  let appellation = req.query.appellation;
+  // let score = req.query.score;
+  // let appellation = req.query.appellation;
 
-  console.log(countryName);
+  console.log(country, color, limitResults);
   axios
     .get(
-      `https://api.globalwinescore.com/globalwinescores/latest/
-      ?country=${country}
-      &vintage=${vintage}
-      &color=${color}
-      &limit=${limitResults}
-      &score=${score}
-      &region=${region}
-      &appellation=${appellation}
-      `,
+      `https://api.globalwinescore.com/globalwinescores/latest/?
+      country=${country}&
+      color=${color}&
+      limit=${limitResults}`,
       {
         headers: {
           Accept: "application/json",
