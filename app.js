@@ -5,11 +5,14 @@ require("dotenv/config");
 // ℹ️ Connects to the database
 require("./db");
 
+
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
 const express = require("express");
 
 // blahblah
+
+
 
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
@@ -17,9 +20,15 @@ const hbs = require("hbs");
 
 const app = express();
 
+const path = require("path")
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "hbs");
+app.use(express.static(path.join(__dirname, "public")));
+
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require("./config")(app);
 
+// require("../")
 const projectName = "new-app";
 const capitalized = (string) =>
   string[0].toUpperCase() + string.slice(1).toLowerCase();
@@ -33,6 +42,9 @@ app.use("/", index);
 const authRoutes = require("./routes/auth");
 // prepend any routh found in aithRoutes with /auth
 app.use("/auth", authRoutes);
+
+// const wineRoutes = require("./routes/gws-route")
+// app.use("/wines", wineRoutes);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
