@@ -24,6 +24,7 @@ const path = require("path")
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
+hbs.registerPartials(path.join(__dirname, "views/partials"))
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require("./config")(app);
