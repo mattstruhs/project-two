@@ -17,6 +17,6 @@ const axios = require('axios');
       .get(`https://api.globalwinescore.com/globalwinescores/latest/${countryName}`)
       .then((responseFromAPI) => {
         console.log(responseFromAPI.data[0]);
-        res.render("/wines", wineList: winesFromAPI);
+        res.render("/wines", { wineList: winesFromAPI });
       });
   });
