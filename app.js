@@ -36,6 +36,12 @@ const capitalized = (string) =>
 
 app.locals.title = `${capitalized(projectName)} created with Ironlauncher`;
 
+// global variable. create custom middleware to access req object and pass to layout
+app.use((req, res, next) =>{
+  res.locals.user = req.session.user;
+  next();
+});
+
 // 👇 Start handling routes here
 const index = require("./routes/index");
 app.use("/", index);

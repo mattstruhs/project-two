@@ -11,10 +11,31 @@
 
 <body>
 
+   <ul id='navbar'>
+      <a href="/">
+         <li>home</li>
+      </a>
+
+      {{#unless user}}
+      <a href="/auth/signup">
+         <li>signup</li>
+      </a>
+      <a href="/auth/login">
+         <li>login</li>
+      </a>
+      {{/unless}}
+
+      {{#if user}}
+      <a href="/logout">
+         <li>logout</li>
+      </a>
+      {{/if}}
+   </ul>
+
    {{{body}}}
 
    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-   {{!-- <script src="/js/wine.js"></script> --}}
+   
 </body>
 
 </html>
