@@ -53,6 +53,12 @@ app.use("/auth", authRoutes);
 const wineRoutes = require("./routes/gws.route")
 app.use("/", wineRoutes);
 
+const journalRoutes = require("./routes/journal.route")
+app.use("/", journalRoutes);
+
+// const profileRoutes = require("./routes/profile.route")
+// app.use("/", profileRoutes);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

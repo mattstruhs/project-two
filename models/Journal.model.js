@@ -36,7 +36,7 @@ const journalSchema = new Schema({
     required: false,
   },
   writeUp: {
-    type: Text,
+    type: String,
     required: false,
   },
 });

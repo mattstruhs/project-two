@@ -15,6 +15,9 @@
       <a href="/">
          <li>home</li>
       </a>
+      <a href="/journal/index">
+         <li>my journal</li>
+      </a>
 
       {{#unless user}}
       <a href="/auth/signup">
@@ -26,7 +29,7 @@
       {{/unless}}
 
       {{#if user}}
-      <a href="/logout">
+      <a href="/auth/logout">
          <li>logout</li>
       </a>
       {{/if}}
@@ -35,7 +38,7 @@
    {{{body}}}
 
    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-   
+
 </body>
 
 </html>
