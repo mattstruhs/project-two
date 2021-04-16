@@ -3,33 +3,41 @@
     <h2>
       {{this.wine}} | id: {{this.wine_id}}
     </h2>
-      <div class="scrolly">
-        <h6>{{this.country}}</h6>
-        <p>{{this.appellation}}</p>
-        <p>{{this.color}}</p>
-        <p>{{this.vintage}}</p>
+    <div class="scrolly">
+      <h6>{{this.country}}</h6>
+      <p>{{this.appellation}}</p>
+      <p>{{this.color}}</p>
+      <p>{{this.vintage}}</p>
     </div>
+    <form action="/journal" method="post">
+      <input type="hidden" name="wine" value={{this.wine}} />
+      <button type="submit">Add To My Collection</button>
+    </form>
   </div>
-{{!-- </a> --}}
 
-{{!-- 
-            "wine": "Chappellet, Cabernet Sauvignon, Napa Valley",
-            "wine_id": 31602,
-            "wine_slug": "chappellet-cabernet-sauvignon-napa-valley",
-            "appellation": "Napa Valley",
-            "appellation_slug": "napa-valley",
-            "color": "Red",
-            "wine_type": "",
-            "regions": [
-                "California"
-            ],
-            "country": "Usa",
-            "classification": null,
-            "vintage": "1973",
-            "date": "2021-03-29",
-            "is_primeurs": false,
-            "score": 85.8,
-            "confidence_index": "C",
-            "journalist_count": 3,
-            "lwin": null,
-            "lwin_11": null --}}
+
+
+  {{!--
+</a> --}}
+
+{{!--
+"wine": "Chappellet, Cabernet Sauvignon, Napa Valley",
+"wine_id": 31602,
+"wine_slug": "chappellet-cabernet-sauvignon-napa-valley",
+"appellation": "Napa Valley",
+"appellation_slug": "napa-valley",
+"color": "Red",
+"wine_type": "",
+"regions": [
+"California"
+],
+"country": "Usa",
+"classification": null,
+"vintage": "1973",
+"date": "2021-03-29",
+"is_primeurs": false,
+"score": 85.8,
+"confidence_index": "C",
+"journalist_count": 3,
+"lwin": null,
+"lwin_11": null --}}
