@@ -1,0 +1,33 @@
+{{!-- <a href="/one-single-wine/{{id}}"> --}}
+  <div class="journal-card">
+    <h2>
+      {{this.wine}} | id: {{this.wine_id}}
+    </h2>
+    <div class="scrolly">
+      <h6>{{this.country}}</h6>
+      <p>{{this.appellation}}</p>
+      <p>{{this.color}}</p>
+      <p>{{this.vintage}}</p>
+
+    </div>
+
+    <form action="/journal" method="post">
+      <input type="text" name="wine_id" value={{this.wine_id}} />
+      <input type="text" name="wine" value={{this.wine}} />
+      <input type="text" name="vintage" value={{this.vintage}} />
+      <input type="text" name="appellation" value={{this.appellation}} />
+      <input type="text" name="color" value={{this.color}} />
+      <input type="text" name="regions" value={{this.regions}} />
+      <input type="text" name="country" value={{this.country}} />
+      <input type="text" name="score" value={{this.score}} />
+    </form>
+
+    <form action="/journal/{{this._id}}/update" method="post">
+    <input type="text" name="writeUp" value={{this.writeUp}} />
+      <button type="submit">Edit Review</button>
+    </form>
+
+    <form action="/journal/{{this._id}}/delete" method="post">
+      <button type="submit">Delete Wine</button>
+    </form>
+  </div>

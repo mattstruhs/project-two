@@ -26,4 +26,24 @@ router.post("/journal", userCheck, (req, res, next) => {
     .catch((err) => next(err));
 });
 
+
+router.post("/journal/:wineID/delete", userCheck, (req, res, next) => { 
+  console.log(req.params)
+    Journal.findByIdAndRemove(req.params.wineID)
+      .then(() => {
+        res.redirect("/journal");
+      })
+      .catch((err) => next(err));
+  });
+
+  router.post("/journal/:wineID/update", userCheck, (req, res, next) => { 
+    console.log(req.params)
+      Journal.findByIdAndUpdate(req.params.wineID)
+        .then(() => {
+          res.redirect("/journal");
+        })
+        .catch((err) => next(err));
+    });
+  
+
 module.exports = router;

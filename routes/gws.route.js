@@ -15,7 +15,6 @@ router.get("/wines", (req, res, next) => {
   axios
     .get(
       `https://api.globalwinescore.com/globalwinescores/latest/?country=${country}`,
-      // "https://api.globalwinescore.com/globalwinescores/latest/?country=Usa",
       {
         headers: {
           Accept: "application/json",

@@ -1,2 +1,12 @@
 This is your Journal
-{{ journalFromDB }}
+{{ journalFromDB.wine }}
+
+<div class='journal-view'>
+
+  {{wineInfo1.length}}
+  
+  {{#each journalFromDB}}
+  {{> journalCard this}}
+  {{/each}}
+
+</div>
