@@ -10,34 +10,17 @@
       <p>{{this.vintage}}</p>
     </div>
     <form action="/journal" method="post">
-      <input type="hidden" name="wine" value={{this.wine}} />
+      <input type="text" name="wine_id" value={{this.wine_id}} />
+      <input type="text" name="wine" value={{this.wine}} />
+      <input type="text" name="vintage" value={{this.vintage}} />
+      <input type="text" name="appellation" value={{this.appellation}} />
+      <input type="text" name="color" value={{this.color}} />
+      <input type="text" name="regions" value={{this.regions}} />
+      <input type="text" name="country" value={{this.country}} />
+      <input type="text" name="score" value={{this.score}} />
+      <input type="text" name="writeUp" value={{this.writeUp}} />
+      {{#unless journalFromDB }}
       <button type="submit">Add To My Collection</button>
+      {{/unless}}
     </form>
   </div>
-
-
-
-  {{!--
-</a> --}}
-
-{{!--
-"wine": "Chappellet, Cabernet Sauvignon, Napa Valley",
-"wine_id": 31602,
-"wine_slug": "chappellet-cabernet-sauvignon-napa-valley",
-"appellation": "Napa Valley",
-"appellation_slug": "napa-valley",
-"color": "Red",
-"wine_type": "",
-"regions": [
-"California"
-],
-"country": "Usa",
-"classification": null,
-"vintage": "1973",
-"date": "2021-03-29",
-"is_primeurs": false,
-"score": 85.8,
-"confidence_index": "C",
-"journalist_count": 3,
-"lwin": null,
-"lwin_11": null --}}

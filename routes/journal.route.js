@@ -15,21 +15,13 @@ router.get("/journal", userCheck, (req, res, next) => {
 
 router.post("/journal", userCheck, (req, res, next) => {
   // get info from api about wine
-  const {
-    wine_id,
-    wine,
-    vintage,
-    appellation,
-    color,
-    regions,
-    country,
-    score,
-    writeUp,
-  } = req.body;
+  const update = {...req.body};
+  update.wine_id = update.wine_id.toString() + update.vintage.toString()  
+
   console.log(req.body)
-  Journal.create(req.body)
+  Journal.create(update)
     .then(() => {
-      res.render("journal/index.hbs");
+      res.redirect("/journal");
     })
     .catch((err) => next(err));
 });

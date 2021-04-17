@@ -2,9 +2,8 @@ const { Schema, model } = require("mongoose");
 
 const journalSchema = new Schema({
   wine_id: {
-    type: Number,
+    type: String,
     required: false,
-    unique: true,
   },
   wine: {
     type: String,
@@ -21,7 +20,7 @@ const journalSchema = new Schema({
   color: {
     type: String,
     required: false,
-    enum: ["red", "rosé", "white"],
+    // enum: ["Red", "rosé", "white"],
   },
   regions: {
     type: Array,
