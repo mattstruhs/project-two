@@ -16,6 +16,7 @@ router.get("/journal", userCheck, (req, res, next) => {
 router.post("/journal", userCheck, (req, res, next) => {
   // get info from api about wine
   const update = {...req.body};
+  console.log({ update })
   update.wine_id = update.wine_id.toString() + update.vintage.toString()  
 
   console.log(req.body)

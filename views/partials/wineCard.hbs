@@ -1,24 +1,36 @@
 {{!-- <a href="/one-single-wine/{{id}}"> --}}
   <div class="wine-card">
     <h2>
-      {{this.wine}} | id: {{this.wine_id}}
+      "{{this.wine}}" | id: "{{this.wine_id}}"
     </h2>
     <div class="scrolly">
-      <h6>{{this.country}}</h6>
-      <p>{{this.appellation}}</p>
-      <p>{{this.color}}</p>
-      <p>{{this.vintage}}</p>
+      <h6>"{{this.country}}"</h6>
+      <p>"{{this.appellation}}"</p>
+      <p>"{{this.color}}"</p>
+      <p>"{{this.vintage}}"</p>
     </div>
+    <ul>
+      <li>"{{this.wine_id}}"</li>
+      <li>"{{this.wine}}"</li>
+      <li>"{{this.vintage}}"</li>
+      <li>"{{this.appellation}}"</li>
+      <li>"{{this.color}}"</li>
+      <li>"{{this.regions}}"</li>
+      <li>"{{this.country}}"</li>
+      <li>{{this.score}}</li>
+      <li>"{{this.writeUp}}"</li>
+    </ul>
+
     <form action="/journal" method="post">
-      <input type="text" name="wine_id" value={{this.wine_id}} />
-      <input type="text" name="wine" value={{this.wine}} />
-      <input type="text" name="vintage" value={{this.vintage}} />
-      <input type="text" name="appellation" value={{this.appellation}} />
-      <input type="text" name="color" value={{this.color}} />
-      <input type="text" name="regions" value={{this.regions}} />
-      <input type="text" name="country" value={{this.country}} />
+      <input type="text" name="wine_id" value="{{this.wine_id}}" />
+      <input type="text" name="wine" value="{{this.wine}}" />
+      <input type="text" name="vintage" value="{{this.vintage}}" />
+      <input type="text" name="appellation" value="{{this.appellation}}" />
+      <input type="text" name="color" value="{{this.color}}" />
+      <input type="text" name="regions" value="{{this.regions}}" />
+      <input type="text" name="country" value="{{this.country}}" />
       <input type="text" name="score" value={{this.score}} />
-      <input type="text" name="writeUp" value={{this.writeUp}} />
+      <input type="text" name="writeUp" value="{{this.writeUp}}" />
       {{#unless journalFromDB }}
       <button type="submit">Add To My Collection</button>
       {{/unless}}
