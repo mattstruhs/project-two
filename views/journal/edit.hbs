@@ -1,0 +1,21 @@
+<ul>
+  <li>{{wine_id}}</li>
+  <li>{{wine}}</li>
+  <li>{{vintage}}</li>
+  <li>{{appellation}}</li>
+  <li>{{color}}</li>
+  <li>{{regions}}</li>
+  <li>{{country}}</li>
+  <li>{{score}}</li>
+  <li>{{myScore}}</li>
+</ul>
+
+<form action="/journal/{{_id}}/edit" method="post">
+  <input type="text" name="writeUp" value="{{writeUp}}" />
+  <input type="text" name="myScore" value="{{myScore}}" />
+  <button type="submit">Submit</button>
+</form>
+
+<form action="/journal/{{this._id}}/delete" method="post">
+  <button type="submit">Delete Wine</button>
+</form>

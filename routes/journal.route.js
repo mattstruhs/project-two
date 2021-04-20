@@ -28,7 +28,7 @@ router.post("/journal", userCheck, (req, res, next) => {
 
 
 router.post("/journal/:wineID/delete", userCheck, (req, res, next) => { 
-  console.log(req.params)
+  console.log("post delete route", req.params)
     Journal.findByIdAndRemove(req.params.wineID)
       .then(() => {
         res.redirect("/journal");
@@ -36,14 +36,39 @@ router.post("/journal/:wineID/delete", userCheck, (req, res, next) => {
       .catch((err) => next(err));
   });
 
-  router.post("/journal/:wineID/update", userCheck, (req, res, next) => { 
-    console.log(req.params)
-      Journal.findByIdAndUpdate(req.params.wineID)
+  router.get("/journal/:wineID/edit", userCheck, (req, res, next) => { 
+    console.log("get edit route", req.params)
+      Journal.findById(req.params.wineID)
+        .then((resultsFromDB) => {
+          res.render("journal/edit", resultsFromDB );
+        })
+        .catch((err) => next(err));
+    });
+
+  router.post("/journal/:wineID/edit", userCheck, (req, res, next) => { 
+    console.log("post edit route", req.params)
+    console.log(req.body)
+      Journal.findByIdAndUpdate(req.params.wineID, req.body)
         .then(() => {
-          res.redirect("/journal");
+          res.redirect("/journal" );
         })
         .catch((err) => next(err));
     });
   
+    router.get("/journal/new", userCheck, (req, res, next) => {
+      res.render("journal/new.hbs")
+    });
+
+    router.post("/journal/new", userCheck, (req, res, next) => { 
+      console.log("post create new route", req.params)
+      console.log(req.body)
+        Journal.create(req.body)
+          .then(() => {
+            res.redirect("/journal" );
+          })
+          .catch((err) => next(err));
+      });
+    
+
 
 module.exports = router;

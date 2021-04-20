@@ -34,6 +34,10 @@ const journalSchema = new Schema({
     type: Number,
     required: false,
   },
+  myScore: {
+    type: Number,
+    required: false,
+  },
   writeUp: {
     type: String,
     required: false,
