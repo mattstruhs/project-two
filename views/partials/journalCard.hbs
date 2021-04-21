@@ -1,21 +1,22 @@
 {{!-- <a href="/one-single-wine/{{id}}"> --}}
   <div class="journal-card">
     <h2>
-      {{this.wine}} | id: {{this.wine_id}}
+      {{this.wine}} | {{this.country}}
     </h2>
     <div class="scrolly">
-      <h6>{{this.country}}</h6>
-      <p>{{this.appellation}}</p>
-      <p>{{this.color}}</p>
-      <p>{{this.vintage}}</p>
+      {{!-- <h6>{{this.country}}</h6> --}}
+      <p>Appellation: {{this.appellation}}</p>
+      {{!-- <p>{{this.color}}</p> --}}
+      <p>Vintage: {{this.vintage}}</p>
+      <p>Critic Score: {{this.score}}</p>
 
     </div>
 
-    <form action="/journal" method="post">
-      <input type="text" name="wine_id" value={{this.wine_id}} />
-      <input type="text" name="wine" value="{{this.wine}}" />
-      <input type="text" name="vintage" value={{this.vintage}} />
-      <input type="text" name="appellation" value="{{this.appellation}}" />
+    <form action="/journal" method="post" class="hide">
+      <input type="hidden" name="wine_id" value={{this.wine_id}} />
+      <input type="hidden" name="wine_id" value={{this.wine}} />
+      <input type="hidden" name="vintage" value={{this.vintage}} />
+      <input type="hidden" name="appellation" value="{{this.appellation}}" />
       <input type="text" name="color" value="{{this.color}}" />
       <input type="text" name="regions" value="{{this.regions}}" />
       <input type="text" name="country" value="{{this.country}}" />
@@ -23,11 +24,11 @@
     </form>
 
     <form action="/journal/{{this._id}}/edit" method="get">
-    <input type="text" name="writeUp" value="{{this.writeUp}}" />
-      <button type="submit">Edit Review</button>
+    <input type="hidden" name="writeUp" value="{{this.writeUp}}" placeholder="Journal about this wine" class="hide" />
+      <button type="submit">Add My Tasting Notes</button>
     </form>
 
     <form action="/journal/{{this._id}}/delete" method="post">
-      <button type="submit">Delete Wine</button>
+      <button type="submit">Remove Wine from My Journal</button>
     </form>
   </div>
