@@ -49,7 +49,17 @@
     <input type="text" name="taste" value="{{taste}}" />
     <br>
     <h2>Rate this Wine!</h2>
-    <input type="text" name="myScore" value="{{myScore}}" />
+    {{!-- <input type="text" name="myScore" value="{{myScore}}" /> --}}
+      <ul class="rating-form">
+        <li class="rating">
+            <input type="radio" name="rating" value="0" checked /><span class="hide"></span>
+            <input type="radio" name="rating" value="1" /><span></span>
+            <input type="radio" name="rating" value="2" /><span></span>
+            <input type="radio" name="rating" value="3" /><span></span>
+            <input type="radio" name="rating" value="4" /><span></span>
+            <input type="radio" name="rating" value="5" /><span></span>
+        </li>
+</ul>
     <button type="submit">Submit</button>
   </form>
 
