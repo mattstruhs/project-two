@@ -7,27 +7,19 @@
     </div>
 
     <div id="title-block">
-      <h6>"{{this.wine}}"</h6>
-      <p>"{{this.country}}"</p>
-      <p>"{{this.appellation}}"</p>
-      <p>"{{this.vintage}}"</p>
+      <h2>"{{this.wine}}"</h2>
+      <h3>"{{this.country}}"</h3>
+      <h3>"{{this.appellation}}"</h3>
+      <h3>"{{this.vintage}}"</h3>
     </div>
 
-<div>
-    <ul>
-      <li>"{{this.wine_id}}"</li>
-      <li>"{{this.wine}}"</li>
-      <li>"{{this.vintage}}"</li>
-      <li>"{{this.appellation}}"</li>
-      <li>"{{this.color}}"</li>
-      <li>"{{this.regions}}"</li>
-      <li>"{{this.country}}"</li>
-      <li>{{this.score}}</li>
-      <li>"{{this.writeUp}}"</li>
-    </ul>
-</div>
+    <div id="wine-score">
+      <h2>"{{this.color}}"</h2>
+      <h2>{{this.score}}</h2>
+      <h2>"{{this.writeUp}}"</h2>
+    </div>
 
-    <div id="wine-details" class="hide">
+    <div id="wine-details" >
       <form action="/journal" method="post">
         <input type="text" name="wine_id" value="{{this.wine_id}}" />
         <input type="text" name="wine" value="{{this.wine}}" />
