@@ -4,10 +4,6 @@ body {
   background-color: red;
 }
 
-a {
-  color: #00b7ff;
-}
-
-h1 {
-  color: 15px;
+.hide{
+  display: none;
 }
