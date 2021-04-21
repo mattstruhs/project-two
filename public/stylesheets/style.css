@@ -10,7 +10,6 @@ body {
 
 #wine-card{
   display: flex;
-  flex-wrap:wrap;
   border: solid;
   border-width: 2px;
   border-radius: 23px;
