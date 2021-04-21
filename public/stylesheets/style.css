@@ -4,6 +4,13 @@ body {
   background-color: red;
 }
 
-.hide{
+.hide {
   display: none;
+}
+
+#wine-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
 }
