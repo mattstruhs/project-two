@@ -10,8 +10,8 @@ body {
 
 #wine-card{
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  justify-items: center;
-  background-color: royalblue;
+  flex-wrap:wrap;
+  border: solid;
+  border-width: 5px;
+  border-radius: 23px;
 }
