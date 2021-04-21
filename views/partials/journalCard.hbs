@@ -1,5 +1,5 @@
 {{!-- <a href="/one-single-wine/{{id}}"> --}}
-  
+
   <div class="journal-card">
     <h2>
       {{this.wine}} | {{this.country}}
@@ -13,23 +13,30 @@
 
     </div>
 
-    <form action="/journal" method="post" class="hide">
-      <input type="hidden" name="wine_id" value={{this.wine_id}} />
-      <input type="hidden" name="wine_id" value={{this.wine}} />
-      <input type="hidden" name="vintage" value={{this.vintage}} />
-      <input type="hidden" name="appellation" value="{{this.appellation}}" />
-      <input type="text" name="color" value="{{this.color}}" />
-      <input type="text" name="regions" value="{{this.regions}}" />
-      <input type="text" name="country" value="{{this.country}}" />
-      <input type="text" name="score" value="{{this.score}}" />
-    </form>
+    <div>
+      <form action="/journal" method="post" class="hide">
+        <input type="hidden" name="wine_id" value={{this.wine_id}} />
+        <input type="hidden" name="wine_id" value={{this.wine}} />
+        <input type="hidden" name="vintage" value={{this.vintage}} />
+        <input type="hidden" name="appellation" value="{{this.appellation}}" />
+        <input type="text" name="color" value="{{this.color}}" />
+        <input type="text" name="regions" value="{{this.regions}}" />
+        <input type="text" name="country" value="{{this.country}}" />
+        <input type="text" name="score" value="{{this.score}}" />
+      </form>
+    </div>
 
-    <form action="/journal/{{this._id}}/edit" method="get">
-    <input type="hidden" name="writeUp" value="{{this.writeUp}}" placeholder="Journal about this wine" class="hide" />
-      <button type="submit">Add My Tasting Notes</button>
-    </form>
+    <div>
+      <form action="/journal/{{this._id}}/edit" method="get">
+        <input type="hidden" name="writeUp" value="{{this.writeUp}}" placeholder="Journal about this wine"
+          class="hide" />
+        <button type="submit">Edit My Tasting Notes</button>
+      </form>
+    </div>
 
-    <form action="/journal/{{this._id}}/delete" method="post">
-      <button type="submit">Remove Wine from My Journal</button>
-    </form>
+    <div>
+      <form action="/journal/{{this._id}}/delete" method="post">
+        <button type="submit">Remove Wine</button>
+      </form>
+    </div>
   </div>

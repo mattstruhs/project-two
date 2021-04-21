@@ -11,7 +11,21 @@
 </ul>
 
 <form action="/journal/{{_id}}/edit" method="post">
-  <input type="text" name="writeUp" value="{{writeUp}}" />
+ 
+  <h2>Hue</h2> 
+  <input type="radio" id="hue-1" name="purple" value="purple">
+  <label for="hue-1">Purple</label>
+  <input type="radio" id="hue-2" name="ruby" value="ruby">
+  <label for="hue-1">Ruby</label>
+  <input type="radio" id="hue-3" name="garnet" value="garnet">
+  <label for="hue-1">Garnet</label>
+  <input type="radio" id="hue-4" name="tawny" value="tawny">
+  <label for="hue-1">Tawny</label>
+  <input type="radio" id="hue-5" name="brown" value="brown">
+  <label for="hue-1">Brown</label>
+  <br>
+  <br>
+   <input type="text" name="writeUp" value="{{writeUp}}" />
   <input type="text" name="myScore" value="{{myScore}}" />
   <button type="submit">Submit</button>
 </form>
