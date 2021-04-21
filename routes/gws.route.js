@@ -5,7 +5,7 @@ const { response } = require("express");
 
 router.get("/wines", (req, res, next) => {
   console.log("great job on the post route!");
-  let limitResults = req.query.limitResults;
+  let limit = req.query.limit;
   let color = req.query.color;
   let country = req.query.country;
   // if we already have it then get it from mongo
@@ -14,7 +14,7 @@ router.get("/wines", (req, res, next) => {
 
   axios
     .get(
-      `https://api.globalwinescore.com/globalwinescores/latest/?country=${country}`,
+      `https://api.globalwinescore.com/globalwinescores/latest/?country=${country}&color=${color}`,
       {
         headers: {
           Accept: "application/json",

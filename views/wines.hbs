@@ -1,11 +1,11 @@
-Wine page
+
 
 <div class='wine-view'>
-
-  {{wineInfo1.length}}
-  
-  {{#each wineInfo1}}
-  {{> wineCard this}}
-  {{/each}}
-
+  <div class="results">
+      Showing {{wineInfo1.length}} results
+  </div>
+    <br>
+      {{#each wineInfo1}}
+        {{> wineCard this}}
+      {{/each}}
 </div>

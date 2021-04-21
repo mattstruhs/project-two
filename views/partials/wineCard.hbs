@@ -3,22 +3,25 @@
     <div>
 
       <div>
+         <h1 class="vintage-title">{{this.vintage}}</h1>
+    
         <h2>
-          "{{this.wine}}" | id: "{{this.wine_id}}"
+          {{this.wine}}
+          {{this.country}}
         </h2>
       </div>
 
       <div id="title-block">
-        <h2>"{{this.wine}}"</h2>
-        <h3>"{{this.country}}"</h3>
-        <h3>"{{this.appellation}}"</h3>
-        <h3>"{{this.vintage}}"</h3>
+        {{!-- <h2>"{{this.wine}}"</h2>
+        <h3>"{{this.country}}"</h3> --}}
+        <h3>Appellation: {{this.appellation}}</h3>
+       
       </div>
 
       <div id="wine-score">
-        <h2>"{{this.color}}"</h2>
+        <h2>{{this.color}}</h2>
         <h2>{{this.score}}</h2>
-        <h2>"{{this.writeUp}}"</h2>
+        <h2>{{this.writeUp}}</h2>
       </div>
 
       <div id="wine-details">
@@ -33,7 +36,7 @@
           <input type="hidden" name="score" value={{this.score}} />
           <input type="hidden" name="writeUp" value="{{this.writeUp}}" />
           {{#unless journalFromDB }}
-          <button type="submit">Add To My Collection</button>
+          <button type="submit" class="button">Add To My Collection</button>
           {{/unless}}
         </form>
       </div>

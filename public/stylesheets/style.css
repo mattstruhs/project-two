@@ -1,18 +1,81 @@
+.text-logo {
+  font-family: Arial;
+  color: red;
+  font-size: 34px;
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: red;
+  padding-top: 80px
+}
+
+header {
+  align-items: center;
+  background-color: lightgray;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+}
+
+header * {
+  display: inline;
+}
+
+header h1 {
+  color: red;
+  margin-left: 50px;
+  padding-right: 100px
+}
+
+header li {
+  margin: 20px;
+}
+
+header li a {
+  color: black;
+  text-decoration: none
+}
+
+header li a:hover {
+  color: red
 }
 
 .hide {
   display: none;
 }
 
-#wine-card{
-  display: flex;
-  flex-wrap:wrap;
-  border: solid;
-  border-width: 2px;
+.results {
+  height: 40px;
+  width: 100%;
+}
+
+.button {
+  position: absolute;
+  bottom: 20px;
+}
+
+#wine-card {
+  border: 2px solid black;
   border-radius: 23px;
-  width: 100px;
+  padding: 20px;
+  height: 400px;
+  width: 250px;
+}
+
+.wine-details {
+  position: absolute;
+}
+
+.wine-view {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.vintage-title {
+  color: peru;
 }

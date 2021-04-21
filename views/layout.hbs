@@ -9,33 +9,34 @@
    <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 
-<body>
 
+
+<header>
+   <h1 class="text-logo">ONLINE WINE JOURNAL</h1>
+   
    <ul id='navbar'>
-      <a href="/">
-         <li>home</li>
-      </a>
-      <a href="/journal">
-         <li>my journal</li>
-      </a>
-
+      <li><a href="/">HOME</a></li>
+      
+      <li><a href="/journal">MY JOURNAL</a></li>
+      
       {{#unless user}}
-      <a href="/auth/signup">
-         <li>signup</li>
-      </a>
-      <a href="/auth/login">
-         <li>login</li>
-      </a>
+      <li><a href="/auth/signup">SIGN UP</a></li>
+      
+      <li><a href="/auth/login">LOGIN</a></li>
       {{/unless}}
 
       {{#if user}}
-      <a href="/auth/logout">
-         <li>logout</li>
-      </a>
+      <li><a href="/auth/logout">LOGOUT</a></li>
       {{/if}}
    </ul>
+</header>
 
+<body>
+
+   <div>
    {{{body}}}
+   </div>
+
 
    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
