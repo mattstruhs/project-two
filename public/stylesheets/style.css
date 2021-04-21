@@ -48,6 +48,7 @@ header li a:hover {
   display: none;
 }
 
+<<<<<<< HEAD
 .results {
   height: 40px;
   width: 100%;
@@ -78,4 +79,12 @@ header li a:hover {
 
 .vintage-title {
   color: peru;
+=======
+#wine-card{
+  display: flex;
+  border: solid;
+  border-width: 2px;
+  border-radius: 23px;
+  width: 400px;
+>>>>>>> 3ce318c85786219d5e3827363049ef547f1ca757
 }
