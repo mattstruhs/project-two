@@ -53,12 +53,20 @@ header li a:hover {
   width: 100%;
 }
 
-.button {
+/* .button {
   position: absolute;
-  bottom: 20px;
-}
+  bottom: 0;
+} */
 
 #wine-card {
+  border: 2px solid black;
+  border-radius: 23px;
+  padding: 20px;
+  height: 400px;
+  width: 250px;
+}
+
+#journal-card {
   border: 2px solid black;
   border-radius: 23px;
   padding: 20px;

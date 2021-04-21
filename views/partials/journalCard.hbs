@@ -1,12 +1,19 @@
 {{!-- <a href="/one-single-wine/{{id}}"> --}}
 
-  <div class="journal-card">
-    <h2>
-      {{this.wine}} | {{this.country}}
-    </h2>
+  <div id="journal-card">
+         <div>
+         <h1 class="vintage-title">{{this.vintage}}</h1>
+    
+        <h2>
+          {{this.wine}}
+          {{this.country}}
+        </h2>
+        <hr>
+      </div>
+
     <div class="scrolly">
       {{!-- <h6>{{this.country}}</h6> --}}
-      <p>Appellation: {{this.appellation}}</p>
+      <p>Appellation: {{this.appellation}}</p>npm 
       {{!-- <p>{{this.color}}</p> --}}
       <p>Vintage: {{this.vintage}}</p>
       <p>Critic Score: {{this.score}}</p>
