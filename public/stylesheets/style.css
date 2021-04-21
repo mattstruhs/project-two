@@ -1,6 +1,6 @@
 .text-logo {
   font-family: Arial;
-  color: red;
+  color: navy;
   font-size: 34px;
 }
 
@@ -26,7 +26,7 @@ header * {
 }
 
 header h1 {
-  color: red;
+
   margin-left: 50px;
   padding-right: 100px
 }
@@ -41,14 +41,13 @@ header li a {
 }
 
 header li a:hover {
-  color: red
+  color: white
 }
 
 .hide {
   display: none;
 }
 
-<<<<<<< HEAD
 .results {
   height: 40px;
   width: 100%;
@@ -79,12 +78,4 @@ header li a:hover {
 
 .vintage-title {
   color: peru;
-=======
-#wine-card{
-  display: flex;
-  border: solid;
-  border-width: 2px;
-  border-radius: 23px;
-  width: 400px;
->>>>>>> 3ce318c85786219d5e3827363049ef547f1ca757
 }
