@@ -42,6 +42,10 @@ const journalSchema = new Schema({
     type: String,
     required: false,
   },
+  ratings: {
+    type: Schema.Types.ObjectID,
+    ref: "SavedResultsFromAPI",
+  }
 });
 
 const Journal = model("Journal", journalSchema);

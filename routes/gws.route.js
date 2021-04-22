@@ -14,6 +14,7 @@ router.get("/wines", async (req, res, next) => {
     // timestamp was in past 3 days to stay current
     // endpoint check if data is current
     // go ahead and raise the limit
+    // keyword search of wine title
     .findOne({
       limit,
       color,
