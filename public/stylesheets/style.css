@@ -48,13 +48,29 @@ header li a:active {
   color: darkgray;
 }
 
+.add-wine {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 23px;
+  font-size: 16px;
+  width: 200px
+}
+
+.add-wine:hover {
+  color: darkgray
+}
+
 .hide {
   display: none;
 }
 
 .results {
+  background-color: white;
   height: 40px;
   width: 100%;
+  padding-top: 20px;
+  position: fixed;
+  top: 80px;
 }
 
 /* .button {
@@ -65,6 +81,8 @@ header li a:active {
 #wine-card {
   border: 2px solid black;
   border-radius: 23px;
+  margin-right: 20px;
+  margin-bottom: 20px;
   padding: 20px;
   height: 400px;
   width: 250px;
@@ -76,6 +94,13 @@ header li a:active {
   padding: 20px;
   height: 400px;
   width: 250px;
+  margin-right: 20px;
+  margin-bottom: 20px
+}
+
+.journal-header {
+  height: 40px;
+  padding-top: 30px;
 }
 
 .wine-details {
@@ -86,6 +111,7 @@ header li a:active {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  padding-top: 60px
 }
 
 .vintage-title {
@@ -99,29 +125,3 @@ header li a:active {
 .rating-form li {
   list-style: none
 }
-
-/* .rating input[type='radio'] {
-  position:absolute;
-    filter:alpha(opacity=0);
-    -moz-opacity:0;
-    -khtml-opacity:0;
-    opacity:0;
-    cursor:pointer;
-    width:17px;
-} */
-
-/* .rating span {
-  width:24px;
-  height:16px;
-  line-height:16px;
-  padding:1px 22px 1px 0; /* 1px FireFox fix */
-  background:url(/public/images/star.png) no-repeat -22px 0;
-}
-
-.rating input[type="radio"]:checked + span {
-  background-position:-22px 0;
-}
-
-.rating input[type="radio"]:checked + span ~ span {
-  background-position:0 0;
-} */
