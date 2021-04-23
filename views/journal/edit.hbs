@@ -49,11 +49,11 @@
     <button type="submit">Save Journal Entry</button>
   </form>
 <br>
+
   <form action="/journal/{{_id}}/rating" method="post">
-    {{!-- <h2>Rate this Wine!</h2> --}}
-    {{!-- <input type="text" name="myScore" value="{{myScore}}" /> --}}
       <ul class="rating-form">
         <li class="rating">
+            <input type="hidden" value="{{_id}}" />
             <input type="hidden" name="rating" value="0" checked /><span class="hide"></span>
             <label for="1">1</label>
             <input type="radio" name="rating" value="1" />
@@ -70,6 +70,6 @@
   </form>
 
 <br>
-  <form action="/journal/{{this._id}}/delete" method="post">
+  <form action="/journal/{{_id}}/delete" method="post">
     <button type="submit">Delete Wine</button>
   </form>
