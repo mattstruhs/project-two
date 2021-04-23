@@ -16,7 +16,7 @@ const completedSearchesSchema = new Schema({
   wines: [
     {
       type: Schema.Types.ObjectID,
-      ref: "SavedResultsFromAPI",
+      ref: "Rating",
     },
   ],
 });

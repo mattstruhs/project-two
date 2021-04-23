@@ -41,6 +41,10 @@ const savedResultsSchema = new Schema({
     type: String,
     required: false,
   },
+  ratings: {
+    type: Schema.Types.ObjectID,
+    ref: "SavedResultsFromAPI",
+  }
 });
 
 const SavedResultsFromAPI = model("SavedResultsFromAPI", savedResultsSchema);

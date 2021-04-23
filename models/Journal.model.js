@@ -44,7 +44,7 @@ const journalSchema = new Schema({
   },
   ratings: {
     type: Schema.Types.ObjectID,
-    ref: "SavedResultsFromAPI",
+    ref: "Rating",
   }
 });
 

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Journal = require("../models/Journal.model");
 const Rating = require("../models/StarRating.model");
+const SavedResultsFromAPI = require("../models/ApiResults.model");
 // const axios = require("axios");
 const userCheck = require("../config/user-check.config");
 
@@ -38,7 +39,7 @@ router.post("/journal/:wineID/delete", userCheck, (req, res, next) => {
 
   router.get("/journal/:wineID/edit", userCheck, (req, res, next) => { 
     console.log("get edit route", req.params)
-      Rating.create(req.params.wineID)
+      Journal.findById(req.params.wineID)
         .then((resultsFromDB) => {
           res.render("journal/edit", resultsFromDB );
         })
@@ -59,7 +60,7 @@ router.post("/journal/:wineID/delete", userCheck, (req, res, next) => {
     router.post("/journal/:wineID/rating", userCheck, (req, res, next) => { 
       console.log("saving your rating for the wine", req.body.wine_id)
       console.log(req.body)
-        Journal.findByIdAndUpdate(req.body)
+        Rating.create(req.body)
           .then(() => {
             res.redirect("/journal" );
           })
