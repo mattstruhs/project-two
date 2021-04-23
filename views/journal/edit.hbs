@@ -25,8 +25,6 @@
   </ul> --}}
 
   <form action="/journal/{{_id}}/edit" method="post">
-
-
     <h2>Hue</h2>
     <input type="radio" id="hue-1" name="purple" value="purple">
     <label for="hue-1">Purple</label>
@@ -48,26 +46,30 @@
     <br>
     <input type="text" name="taste" value="{{taste}}" />
     <br>
-    <h2>Rate this Wine!</h2>
+    <button type="submit">Save Journal Entry</button>
+  </form>
+<br>
+  <form action="/journal/{{_id}}/rating" method="post">
+    {{!-- <h2>Rate this Wine!</h2> --}}
     {{!-- <input type="text" name="myScore" value="{{myScore}}" /> --}}
       <ul class="rating-form">
         <li class="rating">
-            <input type="radio" name="rating" value="0" checked /><span class="hide"></span>
+            <input type="hidden" name="rating" value="0" checked /><span class="hide"></span>
             <label for="1">1</label>
-            <input type="radio" name="rating" value="1" /><span></span>
+            <input type="radio" name="rating" value="1" />
             <label for="2">2</label>
-            <input type="radio" name="rating" value="2" /><span></span>
+            <input type="radio" name="rating" value="2" />
              <label for="3">3</label>
-            <input type="radio" name="rating" value="3" /><span></span>
+            <input type="radio" name="rating" value="3" />
              <label for="4">4</label>
-            <input type="radio" name="rating" value="4" /><span></span>
+            <input type="radio" name="rating" value="4" />
              <label for="5">5</label>
-            <input type="radio" name="rating" value="5" /><span></span>
-        </li>
-</ul>
-    <button type="submit">Submit</button>
+            <input type="radio" name="rating" value="5" />
+      </ul>
+      <button type="submit">Rate this Wine</button>
   </form>
 
+<br>
   <form action="/journal/{{this._id}}/delete" method="post">
     <button type="submit">Delete Wine</button>
   </form>
