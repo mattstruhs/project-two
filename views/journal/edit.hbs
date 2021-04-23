@@ -50,10 +50,10 @@
   </form>
 <br>
 
-  <form action="/journal/{{wine_id}}/rating" method="post">
+  <form action="/journal/{{_id}}/rating" method="post">
       <ul class="rating-form">
         <li class="rating">
-            <input type="hidden" value="{{wine_id}}" />
+            {{!-- <input type="hidden" value="{{wine_id}}" /> --}}
             {{!-- <input type="hidden" name="rating" value="0" checked /><span class="hide"></span> --}}
             <label for="1">1</label>
             <input type="radio" name="rating" value="1" />

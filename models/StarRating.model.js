@@ -7,9 +7,13 @@ const starSchema = new Schema({
     unique: false
   },
   wine_id: {
-    type: String,
-    required: false
+    type: Schema.Types.ObjectId,
+    ref: "SavedResultsFromAPI"
   },
+  user: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+  }
 });
 
 const Rating = model("Rating", starSchema);

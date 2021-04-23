@@ -42,10 +42,10 @@ const journalSchema = new Schema({
     type: String,
     required: false,
   },
-  ratings: {
-    type: Schema.Types.ObjectID,
-    ref: "Rating",
-  }
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Journal = model("Journal", journalSchema);
