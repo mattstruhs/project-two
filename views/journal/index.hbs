@@ -1,10 +1,10 @@
-<div class="journal-header">
+{{!-- <div class="journal-header">
     <form action="/journal/new" method="get">
       <button type="submit" class="add-wine">Add My Own Wine</button>
     </form>
-</div>
+</div> --}}
 
-{{ journalFromDB.wine }}
+{{!-- how to pass ratings into journal card --}}
 
 <div class='wine-view'>
 
@@ -12,6 +12,19 @@
   
   {{#each journalFromDB}}
   {{> journalCard this}}
+  {{/each}}
+
+</div>
+
+<br>
+
+<h2>My Ratings</h2>
+<h4>Count of my ratings: {{ userRatingsFromDB.length }}</h4>
+
+
+<div id="rating-view">
+  {{#each userRatingsFromDB}}
+  {{> ratingCard this}}
   {{/each}}
 
 </div>
