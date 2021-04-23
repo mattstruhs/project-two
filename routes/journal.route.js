@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Journal = require("../models/Journal.model");
+const Rating = require("../models/StarRating.model");
 // const axios = require("axios");
 const userCheck = require("../config/user-check.config");
 
@@ -37,7 +38,7 @@ router.post("/journal/:wineID/delete", userCheck, (req, res, next) => {
 
   router.get("/journal/:wineID/edit", userCheck, (req, res, next) => { 
     console.log("get edit route", req.params)
-      Journal.findById(req.params.wineID)
+      Rating.create(req.params.wineID)
         .then((resultsFromDB) => {
           res.render("journal/edit", resultsFromDB );
         })
@@ -53,6 +54,18 @@ router.post("/journal/:wineID/delete", userCheck, (req, res, next) => {
         })
         .catch((err) => next(err));
     });
+
+
+    router.post("/journal/:wineID/rating", userCheck, (req, res, next) => { 
+      console.log("saving your rating for the wine", req.body.wine_id)
+      console.log(req.body)
+        Journal.findByIdAndUpdate(req.body)
+          .then(() => {
+            res.redirect("/journal" );
+          })
+          .catch((err) => next(err));
+      });
+
   
     router.get("/journal/new", userCheck, (req, res, next) => {
       res.render("journal/new.hbs")
