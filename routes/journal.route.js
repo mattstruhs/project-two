@@ -58,9 +58,9 @@ router.post("/journal/:wineID/delete", userCheck, (req, res, next) => {
 
 
     router.post("/journal/:wineID/rating", userCheck, (req, res, next) => { 
-      console.log("saving your rating for the wine", req.body.wine_id)
-      console.log(req.body)
-        Rating.create(req.body)
+      console.log("saving your rating for the wine", req.body.wineID)
+      console.log(req.body.toString())
+        Rating.create( req.body )
           .then(() => {
             res.redirect("/journal" );
           })

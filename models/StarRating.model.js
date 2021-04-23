@@ -6,7 +6,7 @@ const starSchema = new Schema({
     required: false,
     unique: false
   },
-  wine: {
+  wine_id: {
     type: String,
     required: false
   },
