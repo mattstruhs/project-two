@@ -7,7 +7,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  padding-top: 80px
+  padding-top: 160px
 }
 
 header {
@@ -18,17 +18,21 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  height: 80px;
+  height: 120px;
 }
 
 header * {
   display: inline;
 }
 
+header img {
+  height: 120px
+}
+
 header h1 {
 
   margin-left: 50px;
-  padding-right: 100px
+  padding-right: 100px;
 }
 
 header li {
@@ -37,7 +41,8 @@ header li {
 
 header li a {
   color: black;
-  text-decoration: none
+  text-decoration: none;
+  padding-top: 50px
 }
 
 header li a:hover {
@@ -70,13 +75,21 @@ header li a:active {
   width: 100%;
   padding-top: 20px;
   position: fixed;
-  top: 80px;
+  top: 120px;
 }
 
 /* .button {
   position: absolute;
   bottom: 0;
 } */
+
+#wine-search {
+  padding-top: 30px
+}
+
+#params {
+  padding-bottom: 10px
+}
 
 #wine-card {
   border: 2px solid black;
@@ -107,6 +120,10 @@ header li a:active {
   position: absolute;
 }
 
+#wine-intro {
+  padding-top: 40px
+}
+
 .wine-view {
   display: flex;
   align-items: center;
@@ -124,4 +141,13 @@ header li a:active {
 
 .rating-form li {
   list-style: none
+}
+
+#writeUp, #taste {
+  height: 150px;
+  width: 500px
+}
+
+#add-form label, input {
+  margin-bottom: 20px
 }

@@ -1,14 +1,25 @@
-    <form action="/journal/new" method="post">
-          <label for="wine_id">Wine Id</label>
-      <input type="text" name="wine_id" value="" />
-      <label for="wine">Wine</label>
+    <form action="/journal/new" id="add-form" method="post">
+          
+      {{!-- <input type="text" name="wine_id" value="" /> --}}
+      <label for="wine">Wine Producer:</label>
       <input type="text" name="wine" value="" />
+      <br>
+      <label for="vintage">Vintage:</label>
       <input type="text" name="vintage" value="" />
+      <br>
+      <label for="appellation">Appellation:</label>
       <input type="text" name="appellation" value="" />
+      <br>
+      <label for="color">Color:</label>
       <input type="text" name="color" value="" />
+      <br>
+      <label for="regions">Region:</label>
       <input type="text" name="regions" value="" />
+      <br>
+      <label for="country">Country:</label>
       <input type="text" name="country" value="" />
-      <input type="text" name="score" value="" />
+      <br>
+      {{!-- <input type="text" name="score" value="" /> --}}
       <button type="submit">Submit</button>
     </form>
 

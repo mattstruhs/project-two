@@ -6,43 +6,45 @@
 
 <div id="wine-search">
   <form action="/wines" method="get">
-    <label for="country">
-        Country: 
-    </label>
-    <select name="country" id="country">
-      <option value="">-- Choose a Country --</option>
-      <option value="Argentina">Argentina</option>
-      <option value="Australia">Australia</option>
-      <option value="Chile">Chile</option>
-      <option value="France">France</option>
-      <option value="Germany">Germany</option>
-      <option value="Italy">Italy</option>
-      <option value="New Zealand">New Zealand</option>
-      <option value="Portugal">Portugal</option>
-      <option value="South Africa">South Africa</option>
-      <option value="Spain">Spain</option>
-      <option value="Usa">USA</option>
-    </select>
-    {{!-- <input type="text" name="country" value=""> --}}
-    <br>
+    <div id="params">
+      <label for="country">
+          Country: 
+      </label>
+      <select name="country" id="country">
+        <option value="">-- Choose a Country --</option>
+        <option value="Argentina">Argentina</option>
+        <option value="Australia">Australia</option>
+        <option value="Chile">Chile</option>
+        <option value="France">France</option>
+        <option value="Germany">Germany</option>
+        <option value="Italy">Italy</option>
+        <option value="New Zealand">New Zealand</option>
+        <option value="Portugal">Portugal</option>
+        <option value="South Africa">South Africa</option>
+        <option value="Spain">Spain</option>
+        <option value="Usa">USA</option>
+      </select>
+    </div>
+    
+    <div id="params">
+      <label for="color">
+          Color: 
+      <select name="color" id="color">
+        <option value="">-- Choose a Color --</option>
+        <option value="red">Red</option>
+        <option value="white">White</option>
+      </select>
+    </div>
 
-    <label for="color">
-        Color: 
-    <select name="color" id="color">
-      <option value="">-- Choose a Color --</option>
-      <option value="red">Red</option>
-      <option value="white">White</option>
-    </select>
-    <br>
-
-    <label for="limit">
-        Number of Results
-    <select name="limit" id="limit">
-      <option value="50">50</option>
-      <option value="100">100</option>
-      <option value="150">150</option>
-    </select>
-    <br>
+    <div id="params">
+      <label for="limit">
+          Number of Results
+      <select name="limit" id="limit">
+        <option value="50">50</option>
+        <option value="100">100</option>
+        <option value="150">150</option>
+      </select>
+    </div>
 
     <button type="submit">Search</button>
 
