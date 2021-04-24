@@ -42,9 +42,14 @@ const journalSchema = new Schema({
     type: String,
     required: false,
   },
+  taste: {
+    type: String,
+    required: false,
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
+    required: false,
   },
 });
 
