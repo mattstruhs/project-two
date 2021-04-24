@@ -60,7 +60,7 @@ router.get("/wines", async (req, res, next) => {
       wines,
     });
     console.log("these are the results we saved",  savedRes );
-    res.render("wines", { wineInfo1 });
+    res.render("wines", { wineInfo1: createdWines });
   }
 });
 
