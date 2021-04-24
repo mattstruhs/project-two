@@ -7,35 +7,27 @@ const User = require("../models/User.model");
 
 router.get("/journal", userCheck, async (req, res, next) => {
   // get all the entries from DB
-  const userFromDB = await User.findById(req.session.user._id)
-    .populate([
-      {
-        path: "journal",
-        populate: {
-          path: "ratings",
-          model: "Rating",
-        },
-      },
-      {
+  const userFromDB = await User.findById(req.session.user._id).populate([
+    {
+      path: "journal",
+      populate: {
         path: "ratings",
-        populate: {
-          path: "wine_id",
-          model: "SavedResultsFromAPI",
-        },
+        model: "Rating",
       },
-    ])
+    },
+    {
+      path: "ratings",
+      populate: {
+        path: "wine_id",
+        model: "SavedResultsFromAPI",
+      },
+    },
+  ]);
 
-    // .then((userFromDB) => {
-      // this should be an array that we will do the operation on
-      // each object has a .rating
-      // const avgRating = userFromDB.journal.ratings
-      console.log(userFromDB);
-      res.render("journal/index", {
-        journalFromDB: userFromDB.journal,
-        userRatingsFromDB: userFromDB.ratings,
-      });
-//     })
-//     .catch((err) => next(err));
+  res.render("journal/index", {
+    journalFromDB: userFromDB.journal,
+    userRatingsFromDB: userFromDB.ratings,
+  });
 });
 
 router.post("/journal", userCheck, (req, res, next) => {
@@ -68,7 +60,7 @@ router.get("/journal/:wineID/edit", userCheck, (req, res, next) => {
   console.log("get edit route", req.params);
   SavedResultsFromAPI.findById(req.params.wineID)
     .then((resultsFromDB) => {
-      console.log("this is what we are passing to edit", resultsFromDB);
+      // console.log("this is what we are passing to edit", resultsFromDB);
       res.render("journal/edit", resultsFromDB);
     })
     .catch((err) => next(err));
@@ -77,7 +69,7 @@ router.get("/journal/:wineID/edit", userCheck, (req, res, next) => {
 // we need to discuss if these notes are just for user or made global
 router.post("/journal/:wineID/edit", userCheck, (req, res, next) => {
   console.log("post edit route", req.params);
-  console.log(req.body);
+  // console.log(req.body);
   Journal.findByIdAndUpdate(req.params.wineID, req.body)
     .then(() => {
       res.redirect("/journal");
@@ -93,13 +85,35 @@ router.post("/journal/:wineID/rating", userCheck, async (req, res, next) => {
     user: req.session.user._id,
   });
 
-  await User.findOneAndUpdate(req.session.user._id, {
-    $push: { ratings: resultsFromDB._id },
-  });
+  const reviewVar = resultsFromDB._id
+  console.log(reviewVar)
+  const testOne = await User.findByIdAndUpdate(req.session.user._id, {
+    $push: { ratings: reviewVar },
+  }, {new: true});
 
-  await SavedResultsFromAPI.findOneAndUpdate(req.params.wineID, {
-    $push: { ratings: resultsFromDB._id },
-  });
+  const testTwo = await SavedResultsFromAPI.findByIdAndUpdate(req.params.wineID, {
+    $push: { ratings: reviewVar},
+  }, {new: true});
+  
+  // find all of the ratings for this wine
+  // avg calc
+  // findbyidandupdate
+  const savedWines = await SavedResultsFromAPI.findById(req.params.wineID).populate(    {
+    path: "ratings",
+    populate: {
+      path: "ratings",
+      model: "Rating",
+    },
+  },)
+  
+
+  console.log("checking saved wine", savedWines)
+  // let sumRating = 0;
+  // let result = await resultsFromDB.ratings.forEach((element) => {
+  //   console.log(element.rating, sumRating);
+  //   sumRating += element.rating;
+  // });
+  // let averageRating = (sumRating / userFromDB.ratings.length).toFixed(2);
 
   res.redirect("/journal");
 });

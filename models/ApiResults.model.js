@@ -44,7 +44,15 @@ const savedResultsSchema = new Schema({
   ratings: [{
     type: Schema.Types.ObjectID,
     ref: "Rating",
-  }]
+  }],
+  avgRatings: {
+    type: Number,
+    required: false,
+  },
+  users: [{
+    type: Schema.Types.ObjectID,
+    ref: "User",
+  }],
 });
 
 const SavedResultsFromAPI = model("SavedResultsFromAPI", savedResultsSchema);
