@@ -5,17 +5,37 @@ const SavedResultsFromAPI = require("../models/ApiResults.model");
 const userCheck = require("../config/user-check.config");
 const User = require("../models/User.model");
 
-router.get("/journal", userCheck, (req, res, next) => {
+router.get("/journal", userCheck, async (req, res, next) => {
   // get all the entries from DB
-  User.findById(req.session.user._id)
-    .populate("journal ratings wine")
-    .then((userFromDB) => {
+  const userFromDB = await User.findById(req.session.user._id)
+    .populate([
+      {
+        path: "journal",
+        populate: {
+          path: "ratings",
+          model: "Rating",
+        },
+      },
+      {
+        path: "ratings",
+        populate: {
+          path: "wine_id",
+          model: "SavedResultsFromAPI",
+        },
+      },
+    ])
+
+    // .then((userFromDB) => {
+      // this should be an array that we will do the operation on
+      // each object has a .rating
+      // const avgRating = userFromDB.journal.ratings
+      console.log(userFromDB);
       res.render("journal/index", {
         journalFromDB: userFromDB.journal,
         userRatingsFromDB: userFromDB.ratings,
       });
-    })
-    .catch((err) => next(err));
+//     })
+//     .catch((err) => next(err));
 });
 
 router.post("/journal", userCheck, (req, res, next) => {

@@ -8,7 +8,7 @@
 
 <div class='wine-view'>
 
-  {{wineInfo1.length}}
+  {{!-- {{wineInfo1.length}} --}}
   
   {{#each journalFromDB}}
   {{> journalCard this}}
@@ -20,11 +20,12 @@
 
 <h2>My Ratings</h2>
 <h4>Count of my ratings: {{ userRatingsFromDB.length }}</h4>
-
-
 <div id="rating-view">
   {{#each userRatingsFromDB}}
   {{> ratingCard this}}
   {{/each}}
-
 </div>
+
+
+
+

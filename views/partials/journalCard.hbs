@@ -12,13 +12,13 @@
       </div>
 
     <div class="scrolly">
-      {{!-- <h6>{{this.country}}</h6> --}}
       <p>Appellation: {{this.appellation}}</p>
-      {{!-- <p>{{this.color}}</p> --}}
       <p>Vintage: {{this.vintage}}</p>
       <p>Critic Score: {{this.score}}</p>
-      <p>Star-Rating{{this.userRatingsFromDB}}</p>
-
+      <p>Star-Rating: 
+        {{#each this.ratings }}
+        {{this.rating}}</p>
+        {{/each}}
     </div>
 
     <div>
