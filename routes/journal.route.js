@@ -119,7 +119,7 @@ router.post("/journal/:wineID/rating", userCheck, async (req, res, next) => {
 //   res.render("journal/new.hbs");
 // });
 
-// router.post("/journal/new", userCheck, (req, res, next) => {
+// router.post("/journal", userCheck, (req, res, next) => {
 //   console.log("post create new route", req.params);
 //   console.log(req.body);
 //   Journal.create(req.body)
