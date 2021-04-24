@@ -15,8 +15,9 @@
       <p>Appellation: {{this.appellation}}</p>
       <p>Vintage: {{this.vintage}}</p>
       <p>Critic Score: {{this.score}}</p>
-      <p>Star Rating: {{this.avgRating}}</p>
-
+      {{#each this.ratings}}
+      <p>My Rating: {{this.rating}}</p>
+      {{/each}}
     </div>
 
     <div>

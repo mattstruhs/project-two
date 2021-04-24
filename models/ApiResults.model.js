@@ -45,7 +45,7 @@ const savedResultsSchema = new Schema({
     type: Schema.Types.ObjectID,
     ref: "Rating",
   }],
-  avgRatings: {
+  avgRating: {
     type: Number,
     required: false,
   },

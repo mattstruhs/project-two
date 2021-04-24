@@ -27,22 +27,26 @@ router.get("/journal", userCheck, async (req, res, next) => {
   res.render("journal/index", {
     journalFromDB: userFromDB.journal,
     userRatingsFromDB: userFromDB.ratings,
+    infoFromDB: userFromDB
   });
 });
 
-router.post("/journal", userCheck, (req, res, next) => {
-  // get info from api about wine
-  // const update = { ...req.body };
-  // update.wine_id = update.wine_id.toString() + update.vintage.toString();
-
-  console.log(req.body.wineID);
-  User.findByIdAndUpdate(req.session.user._id, {
+router.post("/journal", userCheck, async (req, res, next) => {
+  // add the wineid to the users model
+  await User.findByIdAndUpdate(req.session.user._id, {
     $push: { journal: req.body.wineID },
   })
-    .then(() => {
+
+  const testJournalAdd = await SavedResultsFromAPI.findByIdAndUpdate(req.body.wineID, {
+    $push: { users: req.session.user._id },
+  }, {new: true})
+
+  console.log("testing users in testJournalAdd", testJournalAdd)
+    // .then(() => {
       res.redirect("/journal");
-    })
-    .catch((err) => next(err));
+      // res.redirect("wines");
+    // })
+    // .catch((err) => next(err));
 });
 
 router.post("/journal/:wineID/delete", userCheck, (req, res, next) => {

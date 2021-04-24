@@ -19,6 +19,10 @@
        
       </div>
 
+{{#if this.inMyCollection}}
+<h3 style="background-color: aqua;"> User {{this.inMyCollection}} </h3>
+{{/if}}
+
       <div id="wine-score">
         <h2>{{this.color}}</h2>
         <h2>{{this.score}}</h2>
@@ -27,17 +31,8 @@
 
       <div id="wine-details">
         <form action="/journal" method="post">
-          {{!-- <input type="hidden" name="wine_id" value="{{this.wine_id}}" />
-          <input type="hidden" name="wine" value="{{this.wine}}" />
-          <input type="hidden" name="vintage" value="{{this.vintage}}" />
-          <input type="hidden" name="appellation" value="{{this.appellation}}" />
-          <input type="hidden" name="color" value="{{this.color}}" />
-          <input type="hidden" name="regions" value="{{this.regions}}" />
-          <input type="hidden" name="country" value="{{this.country}}" />
-          <input type="hidden" name="score" value={{this.score}} />
-          <input type="hidden" name="writeUp" value="{{this.writeUp}}" /> --}}
            <input type="hidden" name="wineID" value="{{this._id}}" />
-          {{#unless journalFromDB }}
+          {{#unless this.inMyCollection }}
           <button type="submit" class="button">Add To My Collection</button>
           {{/unless}}
         </form>
