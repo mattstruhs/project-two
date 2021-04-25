@@ -1,49 +1,49 @@
-{{!-- <a href="/one-single-wine/{{id}}"> --}}
+<div id="journal-card">
+  <div>
+    <h1 class="vintage-title">{{this.vintage}}</h1>
 
-  <div id="journal-card">
-         <div>
-         <h1 class="vintage-title">{{this.vintage}}</h1>
-    
-        <h2>
-          {{this.wine}}
-          {{this.country}}
-        </h2>
-        <hr>
-      </div>
-
-    <div class="scrolly">
-      <p>Appellation: {{this.appellation}}</p>
-      <p>Vintage: {{this.vintage}}</p>
-      <p>Critic Score: {{this.score}}</p>
-      {{#each this.ratings}}
-      <p>My Rating: {{this.rating}}</p>
-      {{/each}}
-    </div>
-
-    <div>
-      <form action="/journal" method="post" class="hide">
-        <input type="hidden" name="wine_id" value={{this.wine_id}} />
-        <input type="hidden" name="wine_id" value={{this.wine}} />
-        <input type="hidden" name="vintage" value={{this.vintage}} />
-        <input type="hidden" name="appellation" value="{{this.appellation}}" />
-        <input type="text" name="color" value="{{this.color}}" />
-        <input type="text" name="regions" value="{{this.regions}}" />
-        <input type="text" name="country" value="{{this.country}}" />
-        <input type="text" name="score" value="{{this.score}}" />
-      </form>
-    </div>
-
-    <div>
-      <form action="/journal/{{this._id}}/edit" method="get">
-        <input type="hidden" name="writeUp" value="{{this.writeUp}}" placeholder="Journal about this wine"
-          class="hide" />
-        <button type="submit">Edit My Tasting Notes</button>
-      </form>
-    </div>
-
-    <div>
-      <form action="/journal/{{this._id}}/delete" method="post">
-        <button type="submit">Remove Wine</button>
-      </form>
-    </div>
+    <h2>
+      {{this.wine}}
+      {{this.country}}
+    </h2>
+    <hr>
   </div>
+
+  <div class="scrolly">
+    <p>Appellation: {{this.appellation}}</p>
+    <p>Vintage: {{this.vintage}}</p>
+    <p>Critic Score: {{this.score}}</p>
+    {{!-- this loop will show us each rating on the journal card. eventually we want to
+    calculate an average rating for all users that have rated this wine. we also want
+    to limit each user to having only one rating for each wine. --}}
+    {{#each this.ratings}}
+    <p>My Rating: {{this.rating}}</p>
+    {{/each}}
+  </div>
+
+  <div>
+    <form action="/journal" method="post" class="hide">
+      <input type="hidden" name="wine_id" value={{this.wine_id}} />
+      <input type="hidden" name="wine_id" value={{this.wine}} />
+      <input type="hidden" name="vintage" value={{this.vintage}} />
+      <input type="hidden" name="appellation" value="{{this.appellation}}" />
+      <input type="text" name="color" value="{{this.color}}" />
+      <input type="text" name="regions" value="{{this.regions}}" />
+      <input type="text" name="country" value="{{this.country}}" />
+      <input type="text" name="score" value="{{this.score}}" />
+    </form>
+  </div>
+
+  <div>
+    <form action="/journal/{{this._id}}/edit" method="get">
+      <input type="hidden" name="writeUp" value="{{this.writeUp}}" placeholder="Journal about this wine" class="hide" />
+      <button type="submit">Edit My Tasting Notes</button>
+    </form>
+  </div>
+
+  <div>
+    <form action="/journal/{{this._id}}/delete" method="post">
+      <button type="submit">Remove Wine</button>
+    </form>
+  </div>
+</div>

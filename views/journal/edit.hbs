@@ -2,32 +2,18 @@
 
 <div class="journal-edit">
   <h2>
-    {{this.wine}} | {{this.country}}
+    {{wineInfoFromDB.wine}} | {{wineInfoFromDB.country}}
   </h2>
-  <div class="scrolly">
-    {{!-- <h6>{{this.country}}</h6> --}}
-    <p>Appellation: {{this.appellation}}</p>
-    {{!-- <p>{{this.color}}</p> --}}
-    <p>Vintage: {{this.vintage}}</p>
-    <p>Critic Score: {{this.score}}</p>
 
+  <div class="scrolly">
+    <p>Appellation: {{wineInfoFromDB.appellation}}</p>
+    <p>Vintage: {{wineInfoFromDB.vintage}}</p>
+    <p>Critic Score: {{wineInfoFromDB.score}}</p>
   </div>
 
-<hr>
+  <hr>
 
-  {{!-- <ul>
-    <li>"{{wine_id}}"</li>
-    <li>"{{wine}}"</li>
-    <li>"{{vintage}}"</li>
-    <li>"{{appellation}}"</li>
-    <li>"{{color}}"</li>
-    <li>"{{regions}}"</li>
-    <li>"{{country}}"</li>
-    <li>"{{score}}"</li>
-    <li>"{{myScore}}"</li>
-  </ul> --}}
-
-  <form action="/journal/{{_id}}/edit" method="post">
+  <form action="/journal/{{wineInfoFromDB._id}}/edit" method="post">
     <h2>Hue</h2>
     <input type="radio" id="hue-1" name="purple" value="purple">
     <label for="hue-1">Purple</label>
@@ -39,40 +25,49 @@
     <label for="hue-4">Tawny</label>
     <input type="radio" id="hue-5" name="brown" value="brown">
     <label for="hue-5">Brown</label>
+     Hue is not saving for some reason!!
     <br>
+
     <br>
     <h2>Smell</h2> (describe fruit, herb, spice, oak, earth, and other aromas)
     <br>
-    <input type="text" name="writeUp" id="writeUp" value="{{writeUp}}" />
+    <input type="text" name="smell" id="writeUp" value="{{this.smell}}" />
 
     <h2>Taste</h2> (describe taste, texture, astringency, finish, length, and complexity)
     <br>
-    <input type="text" name="taste" id="taste" value="{{taste}}" />
-    <br>
-    <button type="submit">Save Journal Entry</button>
+    <input type="text" name="taste" id="taste" value="{{this.taste}}" />
+    <br> 
+    <button type="submit">Save Notes</button>
   </form>
-<br>
+  <br>
 
   <form action="/journal/{{_id}}/rating" method="post">
-      <ul class="rating-form">
-        <li class="rating">
-            {{!-- <input type="hidden" value="{{wine_id}}" /> --}}
-            {{!-- <input type="hidden" name="rating" value="0" checked /><span class="hide"></span> --}}
-            <label for="1">1</label>
-            <input type="radio" name="rating" value="1" />
-            <label for="2">2</label>
-            <input type="radio" name="rating" value="2" />
-             <label for="3">3</label>
-            <input type="radio" name="rating" value="3" />
-             <label for="4">4</label>
-            <input type="radio" name="rating" value="4" />
-             <label for="5">5</label>
-            <input type="radio" name="rating" value="5" />
-      </ul>
-      <button type="submit">Rate this Wine</button>
+    <ul class="rating-form">
+      <li class="rating">
+        <label for="1">1</label>
+        <input type="radio" name="rating" value="1" />
+        <label for="2">2</label>
+        <input type="radio" name="rating" value="2" />
+        <label for="3">3</label>
+        <input type="radio" name="rating" value="3" />
+        <label for="4">4</label>
+        <input type="radio" name="rating" value="4" />
+        <label for="5">5</label>
+        <input type="radio" name="rating" value="5" />
+    </ul>
+    <button type="submit">Rate this Wine</button>
   </form>
 
-<br>
+  <br>
   <form action="/journal/{{_id}}/delete" method="post">
     <button type="submit">Delete Wine</button>
   </form>
+   
+<h2>My Previouys Notes For This Wine</h2>
+<h4>Count of notes: {{ wineInfoFromDB.notes.length }}</h4>
+<div id="rating-view">
+  {{#each wineInfoFromDB.notes}}
+  {{> notesCard this}}
+  {{/each}}
+</div>
+  

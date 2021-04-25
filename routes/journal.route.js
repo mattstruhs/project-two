@@ -1,12 +1,14 @@
 const express = require("express");
 const router = express.Router();
+const userCheck = require("../config/user-check.config");
 const Rating = require("../models/StarRating.model");
 const SavedResultsFromAPI = require("../models/ApiResults.model");
-const userCheck = require("../config/user-check.config");
 const User = require("../models/User.model");
+const TastingNotes = require("../models/TastingNotes.model");
 
+// the user model keeps track of wine id and ratings id in respective arrays
+// populate them to access the details about each wine or rating
 router.get("/journal", userCheck, async (req, res, next) => {
-  // get all the entries from DB
   const userFromDB = await User.findById(req.session.user._id).populate([
     {
       path: "journal",
@@ -27,144 +29,109 @@ router.get("/journal", userCheck, async (req, res, next) => {
   res.render("journal/index", {
     journalFromDB: userFromDB.journal,
     userRatingsFromDB: userFromDB.ratings,
-    infoFromDB: userFromDB
   });
 });
 
+// add a wine to a user's journal
+// we store the wine id to the users model in an array
+// we also store id of each user that has added wine to journal in the saved wines model
 router.post("/journal", userCheck, async (req, res, next) => {
-  // add the wineid to the users model
   await User.findByIdAndUpdate(req.session.user._id, {
     $push: { journal: req.body.wineID },
-  })
-
-  const testJournalAdd = await SavedResultsFromAPI.findByIdAndUpdate(req.body.wineID, {
-    $push: { users: req.session.user._id },
-  }, {new: true})
-
-  console.log("testing users in testJournalAdd", testJournalAdd)
-    // .then(() => {
-      res.redirect("/journal");
-      // res.redirect("wines");
-    // })
-    // .catch((err) => next(err));
+  });
+  await SavedResultsFromAPI.findByIdAndUpdate(
+    req.body.wineID,
+    {
+      $push: { users: req.session.user._id },
+    },
+    { new: true }
+  );
+  res.redirect("/journal");
 });
 
-router.post("/journal/:wineID/delete", userCheck, (req, res, next) => {
-  console.log("post delete route", req.params);
-  User.findByIdAndUpdate(req.session.user._id, {
-    $pull: { journal: req.params.wineID },
-  })
-    .then(() => {
-      res.redirect("/journal");
-    })
-    .catch((err) => next(err));
+// delete a wine from a users journal by removing the wine id from the users model
+// and user id from the saved wines model
+router.post("/journal/:wineID/delete", userCheck, async (req, res, next) => {
+  await User.findByIdAndUpdate(
+    req.session.user._id,
+    {
+      $pull: { journal: req.params.wineID },
+    },
+    { new: true }
+  );
+  await SavedResultsFromAPI.findByIdAndUpdate(
+    req.body.wineID,
+    {
+      $pull: { users: req.session.user._id },
+    },
+    { new: true }
+  );
+  res.redirect("/journal");
 });
 
-router.get("/journal/:wineID/edit", userCheck, (req, res, next) => {
-  console.log("get edit route", req.params);
-  SavedResultsFromAPI.findById(req.params.wineID)
-    .then((resultsFromDB) => {
-      // console.log("this is what we are passing to edit", resultsFromDB);
-      res.render("journal/edit", resultsFromDB);
-    })
-    .catch((err) => next(err));
+// we only want to see the users tasting notes and populate them to pass through notesCard
+router.get("/journal/:wineID/edit", userCheck, async (req, res, next) => {
+  const wineInfoFromDB = await SavedResultsFromAPI.findById(
+    req.params.wineID
+  ).populate("notes");
+  res.render("journal/edit", { wineInfoFromDB });
 });
 
-// we need to discuss if these notes are just for user or made global
-router.post("/journal/:wineID/edit", userCheck, (req, res, next) => {
-  console.log("post edit route", req.params);
-  // console.log(req.body);
-  Journal.findByIdAndUpdate(req.params.wineID, req.body)
-    .then(() => {
-      res.redirect("/journal");
-    })
-    .catch((err) => next(err));
+// create tasting notes and save the note id to the user in an array
+// we will also keep track of notes for each respective wine in an array
+router.post("/journal/:wineID/edit", userCheck, async (req, res, next) => {
+  const notesInfoFromDB = await TastingNotes.create(req.body);
+  await User.findByIdAndUpdate(
+    req.session.user._id,
+    {
+      $push: { notes: notesInfoFromDB._id },
+    },
+    { new: true }
+  );
+  const wineInfoFromDB = await SavedResultsFromAPI.findByIdAndUpdate(
+    req.params.wineID,
+    {
+      $push: { notes: notesInfoFromDB._id },
+    },
+    { new: true }
+  ).populate("notes");
+  res.render("journal/edit", { wineInfoFromDB });
 });
 
+// create new rating, keep track of the users rating in the users model, and each wine keeps track of it's ratings
 router.post("/journal/:wineID/rating", userCheck, async (req, res, next) => {
-  console.log("saving a new rating to star-ratings");
   const resultsFromDB = await Rating.create({
     ...req.body,
     wine_id: req.params.wineID,
     user: req.session.user._id,
   });
-
-  const reviewVar = resultsFromDB._id
-  console.log(reviewVar)
-  const testOne = await User.findByIdAndUpdate(req.session.user._id, {
-    $push: { ratings: reviewVar },
-  }, {new: true});
-
-  const testTwo = await SavedResultsFromAPI.findByIdAndUpdate(req.params.wineID, {
-    $push: { ratings: reviewVar},
-  }, {new: true});
-  
-  // find all of the ratings for this wine
-  // avg calc
-  // findbyidandupdate
-  const savedWines = await SavedResultsFromAPI.findById(req.params.wineID).populate(    {
+  const ratingID = resultsFromDB._id;
+  await User.findByIdAndUpdate(
+    req.session.user._id,
+    {
+      $push: { ratings: ratingID },
+    },
+    { new: true }
+  );
+  await SavedResultsFromAPI.findByIdAndUpdate(
+    req.params.wineID,
+    {
+      $push: { ratings: ratingID },
+    },
+    { new: true }
+  );
+  await SavedResultsFromAPI.findById(req.params.wineID).populate({
     path: "ratings",
     populate: {
       path: "ratings",
       model: "Rating",
     },
-  },)
-  
+  });
 
-  console.log("checking saved wine", savedWines)
-  // let sumRating = 0;
-  // let result = await resultsFromDB.ratings.forEach((element) => {
-  //   console.log(element.rating, sumRating);
-  //   sumRating += element.rating;
-  // });
-  // let averageRating = (sumRating / userFromDB.ratings.length).toFixed(2);
+  // look at calculating the average rating with the new rating just created
+  // update the average rating in the saved wines model
 
   res.redirect("/journal");
 });
-
-// router.post("/journal/:wineID/rating", userCheck, (req, res, next) => {
-//   console.log("saving your rating to the ratings model", req.params.wineID);
-//   console.log({
-//     ...req.body,
-//     wine_id: req.params.wineID,
-//     user: req.session.user._id,
-//   });
-
-//   Rating.create({
-//     ...req.body,
-//     wine_id: req.params.wineID,
-//     user: req.session.user._id,
-//   })
-//     .then((resultsFromDB) => {
-//       console.log("saving review to the saved api results model", { ratings: resultsFromDB._id } )
-//       SavedResultsFromAPI.findByIdAndUpdate(req.param.wineID, {
-//         $push: { ratings: resultsFromDB._id },
-//       })
-//       .then(() => {
-//         console.log("saving review to the user's model", { ratings: resultsFromDB._id } )
-//         User.findByIdAndUpdate(req.param.wineID, {
-//           $push: { ratings: resultsFromDB._id },
-//         })
-//         .then(() => {
-//           res.redirect("/journal" );
-//         });
-//       });
-//     })
-//     .catch((err) => next(err));
-// });
-
-// router.get("/journal/new", userCheck, (req, res, next) => {
-//   res.render("journal/new.hbs");
-// });
-
-// router.post("/journal", userCheck, (req, res, next) => {
-//   console.log("post create new route", req.params);
-//   console.log(req.body);
-//   Journal.create(req.body)
-//     .then(() => {
-//       res.redirect("/journal");
-//     })
-//     .catch((err) => next(err));
-// });
 
 module.exports = router;

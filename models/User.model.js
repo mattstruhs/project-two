@@ -4,24 +4,30 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   ratings: [
     {
       type: Schema.Types.ObjectID,
       ref: "Rating",
-    }
+    },
   ],
   journal: [
     {
-    type: Schema.Types.ObjectId,
-    ref: "SavedResultsFromAPI"
-  }
-]
+      type: Schema.Types.ObjectId,
+      ref: "SavedResultsFromAPI",
+    },
+  ],
+  notes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "TastingNotes",
+    },
+  ],
 });
 
 const User = model("User", userSchema);

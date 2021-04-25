@@ -37,10 +37,6 @@ const savedResultsSchema = new Schema({
     type: Number,
     required: false,
   },
-  writeUp: {
-    type: String,
-    required: false,
-  },
   ratings: [{
     type: Schema.Types.ObjectID,
     ref: "Rating",
@@ -52,6 +48,10 @@ const savedResultsSchema = new Schema({
   users: [{
     type: Schema.Types.ObjectID,
     ref: "User",
+  }],
+  notes: [{
+    type: Schema.Types.ObjectID,
+    ref: "TastingNotes",
   }],
 });
 
