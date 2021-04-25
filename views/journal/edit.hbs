@@ -65,6 +65,7 @@
    
 <h2>My Previouys Notes For This Wine</h2>
 <h4>Count of notes: {{ wineInfoFromDB.notes.length }}</h4>
+I think we are seeing all users notes here? Do we want this? Either way I think we want to be able to filter down to just the user's notes. 
 <div id="rating-view">
   {{#each wineInfoFromDB.notes}}
   {{> notesCard this}}

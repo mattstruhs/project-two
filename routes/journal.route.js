@@ -69,7 +69,7 @@ router.post("/journal/:wineID/delete", userCheck, async (req, res, next) => {
   res.redirect("/journal");
 });
 
-// we only want to see the users tasting notes and populate them to pass through notesCard
+// we are seeing all users' tasting notes and populate them to pass through notesCard. Do we want to filter down to just the user?
 router.get("/journal/:wineID/edit", userCheck, async (req, res, next) => {
   const wineInfoFromDB = await SavedResultsFromAPI.findById(
     req.params.wineID
