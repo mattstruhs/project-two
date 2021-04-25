@@ -5,3 +5,6 @@ document.addEventListener(
   },
   false
 );
+
+const dom = document.getElementById("filter-link")
+console.log("do you see this", dom.innerHTML)

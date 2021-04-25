@@ -69,17 +69,26 @@ router.post("/journal/:wineID/delete", userCheck, async (req, res, next) => {
   res.redirect("/journal");
 });
 
-// we are seeing all users' tasting notes and populate them to pass through notesCard. Do we want to filter down to just the user?
+// assign a value for all of the notes created by the user, so we can filter in hbs
 router.get("/journal/:wineID/edit", userCheck, async (req, res, next) => {
   const wineInfoFromDB = await SavedResultsFromAPI.findById(
     req.params.wineID
   ).populate("notes");
+  const copyOne = wineInfoFromDB.notes;
+  copyOne.forEach((notes) => {
+    if (notes.user.equals(req.session.user._id)) {
+      console.log("this is my note");
+      notes.isMyNote = true;
+    }
+  });
   res.render("journal/edit", { wineInfoFromDB });
 });
 
 // create tasting notes and save the note id to the user in an array
 // we will also keep track of notes for each respective wine in an array
+// add user to req.body
 router.post("/journal/:wineID/edit", userCheck, async (req, res, next) => {
+  req.body.user = req.session.user._id;
   const notesInfoFromDB = await TastingNotes.create(req.body);
   await User.findByIdAndUpdate(
     req.session.user._id,

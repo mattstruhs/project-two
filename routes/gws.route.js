@@ -30,8 +30,9 @@ router.get("/wines", async (req, res, next) => {
     console.log(
       "We've already saved these results from a previous search! Here are the results from Mongo"
     );
+    
+    // check to see if the user id associated with a journal matches our user
     const copyOne = previousSearchResultsFromDB.wines;
-
     copyOne.forEach((wine) => {
       wine.users.forEach((user) => {
         if (user.equals(req.session.user._id)) {
