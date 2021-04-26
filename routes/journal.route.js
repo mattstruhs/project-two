@@ -79,6 +79,8 @@ router.get("/journal/:wineID/edit", userCheck, async (req, res, next) => {
     if (notes.user.equals(req.session.user._id)) {
       console.log("this is my note");
       notes.isMyNote = true;
+    } else {
+      notes.isMyNote = false;
     }
   });
   res.render("journal/edit", { wineInfoFromDB });

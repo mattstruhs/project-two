@@ -1,6 +1,19 @@
 <br>
+
+<div id="rating-view-user" >
 {{#if isMyNote}}
+{{isMyNote}}
 <h4>Smell: {{this.smell}} </h4>
 <h4>Taste: {{this.taste}} </h4>
 {{/if}}
+</div>
+
+<div id="rating-view-all" >
+{{#unless isMyNote}}
+{{isMyNote}}
+<h4>Smell: {{this.smell}} </h4>
+<h4>Taste: {{this.taste}} </h4>
+{{/unless}}
+</div>
+
 <br>

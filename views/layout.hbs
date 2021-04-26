@@ -13,15 +13,15 @@
 
 <header>
    <img src="/images/logo.png" />
-   
+
    <ul id='navbar'>
       <li><a href="/">HOME</a></li>
-      
+
       <li><a href="/journal">MY JOURNAL</a></li>
-      
+
       {{#unless user}}
       <li><a href="/auth/signup">SIGN UP</a></li>
-      
+
       <li><a href="/auth/login">LOGIN</a></li>
       {{/unless}}
 
@@ -34,12 +34,12 @@
 <body>
 
    <div>
-   {{{body}}}
+      {{{body}}}
    </div>
 
 
    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+   <script src="/js/script.js"></script>
 </body>
 
 </html>

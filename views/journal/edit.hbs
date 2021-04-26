@@ -25,7 +25,7 @@
     <label for="hue-4">Tawny</label>
     <input type="radio" id="hue-5" name="brown" value="brown">
     <label for="hue-5">Brown</label>
-     Hue is not saving for some reason!!
+    Hue is not saving for some reason!!
     <br>
 
     <br>
@@ -36,7 +36,7 @@
     <h2>Taste</h2> (describe taste, texture, astringency, finish, length, and complexity)
     <br>
     <input type="text" name="taste" id="taste" value="{{this.taste}}" />
-    <br> 
+    <br>
     <button type="submit">Save Notes</button>
   </form>
   <br>
@@ -62,13 +62,12 @@
   <form action="/journal/{{_id}}/delete" method="post">
     <button type="submit">Delete Wine</button>
   </form>
-   
-<h2>My Previouys Notes For This Wine </h2>
-<h4>See what others are saying about this wine: </h4>
-{{!-- let's try to do some DOM here to see all of the users' notes --}}
-<div id="filter-link">see what others are saying ({{ wineInfoFromDB.notes.length }} total reviews)  </div>
-<div id="rating-view">
+
+  <h2 id="my-notes">My Previouys Notes For This Wine </h2>
+  <h4>See what others are saying about this wine: </h4>
+  <a href="#my-notes" id="filter-link">see what others are saying ({{ wineInfoFromDB.notes.length }} total reviews) </a>
+  <a href="#my-notes" id="back-to-my-reviews"> See only my notes </a>
+
   {{#each wineInfoFromDB.notes}}
   {{> notesCard this}}
   {{/each}}
-</div>

@@ -156,3 +156,15 @@ header li a:active {
 #add-form label, input {
   margin-bottom: 20px
 }
+
+#rating-view-all{
+  display: none;
+}
+
+#rating-view-user{
+  display: block;
+}
+
+#back-to-my-reviews{
+  display: none;
+}
