@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{{!-- <script src="/js/script.js"></script> --}}
 
 <div class="journal-edit">
   <h2>
@@ -13,6 +14,13 @@
 
   <hr>
 
+
+  {{#if wineInfoFromDB.alreadyReviewed}}
+<h3>You have already reviewed this wine!</h3>
+  {{/if}}
+
+
+<div id="review-form">
   <form action="/journal/{{wineInfoFromDB._id}}/edit" method="post">
     <h2>Hue</h2>
     <input type="radio" id="hue-1" name="purple" value="purple">
@@ -25,7 +33,6 @@
     <label for="hue-4">Tawny</label>
     <input type="radio" id="hue-5" name="brown" value="brown">
     <label for="hue-5">Brown</label>
-    Hue is not saving for some reason!!
     <br>
 
     <br>
@@ -37,8 +44,10 @@
     <br>
     <input type="text" name="taste" id="taste" value="{{this.taste}}" />
     <br>
-    <button type="submit">Save Notes</button>
+    <button id="submit-review-form" type="submit">Save Notes</button>
   </form>
+</div>
+
   <br>
 
   <form action="/journal/{{wineInfoFromDB._id}}/rating" method="post">

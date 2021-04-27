@@ -80,11 +80,16 @@ router.get("/journal/:wineID/edit", userCheck, async (req, res, next) => {
     if (notes.user.equals(req.session.user._id)) {
       console.log("this is my note");
       notes.isMyNote = true;
+      wineInfoFromDB.alreadyReviewed = true;
     } else {
       notes.isMyNote = false;
     }
   });
-  res.render("journal/edit", { wineInfoFromDB });
+
+  res.render("journal/edit", {
+    wineInfoFromDB: wineInfoFromDB,
+    userID: req.session.user._id,
+  });
 });
 
 // create tasting notes and save the note id to the user in an array
@@ -107,7 +112,7 @@ router.post("/journal/:wineID/edit", userCheck, async (req, res, next) => {
     },
     { new: true }
   ).populate("notes");
-  res.render("journal/edit", { wineInfoFromDB });
+  res.redirect("/journal");
 });
 
 // step one: save rating to rating DB
