@@ -12,7 +12,6 @@ router.get("/wines", async (req, res, next) => {
     "Got your search paramaters! Let's see if we have done this search before."
   );
   const { limit, color, country } = req.query;
-
   // check to see if we have done this search before
   const previousSearchResultsFromDB = await completedSearches
     // timestamp was in past 3 days to stay current
@@ -56,6 +55,7 @@ router.get("/wines", async (req, res, next) => {
       }
     );
     const wineInfo1 = responseFromAPI.data.results;
+    
     wineInfo1.journal = req.session.user._id;
     console.log("testing wineInfo1 users", wineInfo1.users);
 
@@ -63,7 +63,7 @@ router.get("/wines", async (req, res, next) => {
       "We got the results back from the api request! Storing them now for future reference!"
     );
     const createdWines = await SavedResultsFromAPI.create(wineInfo1);
-
+        
     // store just the wine ids so we can store them in our previous searches model
     const wines = createdWines.map((wine) => wine._id);
 
