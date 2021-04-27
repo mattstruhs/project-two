@@ -110,8 +110,6 @@ router.post("/journal/:wineID/edit", userCheck, async (req, res, next) => {
   res.render("journal/edit", { wineInfoFromDB });
 });
 
-// create new rating, keep track of the users rating in the users model, and each wine keeps track of it's ratings
-
 // step one: save rating to rating DB
 // step one-b: save rating id to user model
 // step two: save rating to wine DB
@@ -137,7 +135,7 @@ router.post("/journal/:wineID/rating", userCheck, async (req, res, next) => {
     },
     { new: true }
   );
-  
+
   await SavedResultsFromAPI.findByIdAndUpdate(
     req.params.wineID,
     {
@@ -149,47 +147,46 @@ router.post("/journal/:wineID/rating", userCheck, async (req, res, next) => {
   // ------ calculate average rating with newly submitted rating
   const resultsFromDB = await SavedResultsFromAPI.findById(
     req.params.wineID
-    ).populate({
+  ).populate({
+    path: "ratings",
+    populate: {
       path: "ratings",
-      populate: {
-        path: "ratings",
-        model: "Rating",
-      },
-    });
+      model: "Rating",
+    },
+  });
 
-    console.log("checking resultsFromDB", resultsFromDB);
-    const ratingsArray = resultsFromDB.ratings;
-    
-    console.log("checking ratingsArray", ratingsArray);
-    
-    let ratingValues = [];
-    ratingsArray.forEach((rating) => {
-      console.log(rating);
-      ratingValues.push(rating.rating);
-    });
-    const sumOfRating = ratingValues.reduce((a, v) => {
-      return a + v;
-    }, 0);
-    console.log("check the sumOfRating", sumOfRating);
-    const newAverageRating = sumOfRating / ratingValues.length;
-    console.log("check the avg", newAverageRating);
-    // ------
-    
-    const checkResults = await SavedResultsFromAPI.findByIdAndUpdate(
-      req.params.wineID,
-      {
-        avgRating: newAverageRating.toFixed(2),
-      },
-      { new: true }
-      );
-      
-      console.log(
-        "check if new average was saved to wines model",
-        checkResults.avgRating
-      );
+  console.log("checking resultsFromDB", resultsFromDB);
+  const ratingsArray = resultsFromDB.ratings;
 
+  console.log("checking ratingsArray", ratingsArray);
 
-      res.redirect("/journal" ); //{ journalFromDB: checkResults }
-    });
+  let ratingValues = [];
+  ratingsArray.forEach((rating) => {
+    console.log(rating);
+    ratingValues.push(rating.rating);
+  });
+  const sumOfRating = ratingValues.reduce((a, v) => {
+    return a + v;
+  }, 0);
+  console.log("check the sumOfRating", sumOfRating);
+  const newAverageRating = sumOfRating / ratingValues.length;
+  console.log("check the avg", newAverageRating);
+  // ------
+
+  const checkResults = await SavedResultsFromAPI.findByIdAndUpdate(
+    req.params.wineID,
+    {
+      avgRating: newAverageRating.toFixed(2),
+    },
+    { new: true }
+  );
+
+  console.log(
+    "check if new average was saved to wines model",
+    checkResults.avgRating
+  );
+
+  res.redirect("/journal");
+});
 
 module.exports = router;
