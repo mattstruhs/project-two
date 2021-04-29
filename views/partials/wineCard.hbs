@@ -1,12 +1,18 @@
-{{!-- condition based on a wine already being in our collectin --}}
+<script src="/js/wineCard.script.js"></script>
+
+{{!-- conditional to see if a wine is already in our journal --}}
+
 
 {{!-- <a href="/one-single-wine/{{id}}"> --}}
+
   <div id="wine-card">
+
+
     <div>
 
       <div>
-         <h1 class="vintage-title">{{this.vintage}}</h1>
-    
+        <h1 class="vintage-title">{{this.vintage}}</h1>
+
         <h2>
           {{this.wine}}
           {{this.country}}
@@ -18,22 +24,25 @@
         {{!-- <h2>"{{this.wine}}"</h2>
         <h3>"{{this.country}}"</h3> --}}
         <h3>Appellation: {{this.appellation}}</h3>
-       
+
       </div>
 
-{{#if this.inMyCollection}}
-<h3 style="background-color: aqua;"> User {{this.inMyCollection}} </h3>
-{{/if}}
+
+      {{#if this.inMyCollection}}
+      <h3 style="background-color: aqua;"> User {{this.inMyCollection}} </h3>
+      <div id="already-in-my-collection"></div>
+      {{/if}}
+
 
       <div id="wine-score">
         <h3>{{this.color}}</h2>
-        <h3>Critic Score: {{this.score}}</h2>
-        <h3>{{this.writeUp}}</h2>
+          <h3>Critic Score: {{this.score}}</h2>
+            <h3>{{this.writeUp}}</h2>
       </div>
 
       <div id="wine-details">
         <form action="/journal" method="post">
-           <input type="hidden" name="wineID" value="{{this._id}}" />
+          <input type="hidden" name="wineID" value="{{this._id}}" />
           {{#unless this.inMyCollection }}
           <button type="submit" class="button">Add To My Collection</button>
           {{/unless}}
